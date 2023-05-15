@@ -1,11 +1,10 @@
+import {useRouter} from "next/router";
 import {useContext, useEffect} from "react";
 import {AuthContext} from "@/contexts";
-import {useRouter} from "next/router";
 import {NavbarComponent} from "@/components";
-import Link from "next/link";
+import {NewGameForm} from "@/components/UI/Forms/NewGameForm";
 
-export default function Games() {
-
+export default function Ngame() {
     const router = useRouter();
 
     const {state, dispatch} = useContext(AuthContext)
@@ -20,11 +19,10 @@ export default function Games() {
             <NavbarComponent />
             <div className='container mx-auto'>
                 <div className='text-center text-4xl'>
-                    <h1 className='pt-10'>Hry</h1>
+                    <h1 className='pt-10'>Nová hra</h1>
                 </div>
-                <div>
-                    <Link href='/ngame' className='text-green-700'>Nová hra</Link>
-                </div>
+                <NewGameForm />
+
             </div>
         </main>
     )

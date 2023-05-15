@@ -1,7 +1,7 @@
 export interface FormInputProps {
     placeholder: string
     label: string
-    value: string
-    setValue: (v: string) => void
+    value: string | number | Date
+    setValue: ((v: string) => void) | ((v:number) => void) | ((v: Date) => void)
     type: string
 }

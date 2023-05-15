@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {useRouter} from "next/router";
-import {useContext, useEffect} from "react";
+import {useContext} from "react";
 import {AuthContext} from "@/contexts";
 
 export const NavbarComponent = () => {

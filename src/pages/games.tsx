@@ -2,7 +2,6 @@ import {useContext, useEffect} from "react";
 import {AuthContext} from "@/contexts";
 import {useRouter} from "next/router";
 import {NavbarComponent} from "@/components";
-import {LoginForm} from "@/components/UI/Forms/LoginForm";
 
 export default function Games() {
 

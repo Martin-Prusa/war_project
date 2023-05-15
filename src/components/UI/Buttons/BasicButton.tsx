@@ -1,5 +1,4 @@
 import {BasicButtonProps} from "@/components/UI/Buttons/BasicButtonProps";
-import {act} from "react-dom/test-utils";
 
 export const BasicButton = ({children, action}: BasicButtonProps) => {
     return (

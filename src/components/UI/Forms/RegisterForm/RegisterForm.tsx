@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {ILogin, IRegister} from "@/interfaces";
+import {IRegister} from "@/interfaces";
 import {FormInput} from "@/components/UI/Forms";
 import {BasicButton} from "@/components/UI/Buttons/BasicButton";
 import {useRouter} from "next/router";

@@ -4,7 +4,6 @@ import {FormInput} from "@/components/UI/Forms";
 import {BasicButton} from "@/components/UI/Buttons/BasicButton";
 import {useRouter} from "next/router";
 import {AuthContext} from "@/contexts";
-import {authReducer} from "@/reducers";
 
 export const LoginForm = () => {
 

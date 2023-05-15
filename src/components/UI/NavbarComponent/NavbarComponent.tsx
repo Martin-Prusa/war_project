@@ -20,7 +20,7 @@ export const NavbarComponent = () => {
             {state ?
                 <div className='flex gap-3 items-center text-xl'>
                     <Link href='/games'>Hry</Link>
-                    <Link href='/games'>Žánry</Link>
+                    <Link href='/genres'>Žánry</Link>
                     <Link href='/me' >Profil</Link>
                     <button onClick={handleLogout} className='text-xl'>Logout</button>
                 </div>

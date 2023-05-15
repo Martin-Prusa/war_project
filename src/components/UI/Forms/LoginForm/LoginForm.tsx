@@ -11,10 +11,10 @@ export const LoginForm = () => {
 
     const {state, dispatch} = useContext(AuthContext)
 
-    const [values, setValues] = useState({
+    const [values, setValues] = useState<ILogin>({
         email: '',
         password: ''
-    } as ILogin)
+    })
 
     const [showError, setShowError] = useState(false)
 

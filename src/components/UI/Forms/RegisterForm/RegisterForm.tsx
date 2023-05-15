@@ -8,11 +8,11 @@ export const RegisterForm = () => {
 
     const router = useRouter();
 
-    const [values, setValues] = useState({
+    const [values, setValues] = useState<IRegister>({
         email: '',
         password: '',
         username: ''
-    } as IRegister)
+    })
 
     const [showError, setShowError] = useState(false)
 

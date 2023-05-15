@@ -28,7 +28,6 @@ export const LoginForm = () => {
     }
 
     const handleLogin = () => {
-        console.log(values)
         fetch('http://localhost:3000/auth/login', {
             method: 'POST',
             headers: {

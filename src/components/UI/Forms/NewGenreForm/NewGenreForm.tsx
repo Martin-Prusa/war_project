@@ -11,8 +11,6 @@ export const NewGenreForm = ({changeFunc}: NewGenreFormProps) => {
 
     const [values, setValues] = useState<IGenre>({name: ''})
 
-    const [showError, setShowError] = useState(false)
-
     const setName = (name: string) => {
         setValues({...values, name})
     }
@@ -34,7 +32,6 @@ export const NewGenreForm = ({changeFunc}: NewGenreFormProps) => {
             <form action="">
                 <FormInput placeholder='Super hra' type='text' label='Žánr' value={values.name} setValue={setName} />
                 <BasicButton action={add}>Přidat</BasicButton>
-                { showError ? <p className='text-red-500'>Chyba</p> : null}
             </form>
         </div>
     )

@@ -1,6 +1,5 @@
-import {useContext, useEffect, useState} from "react";
+import {useContext} from "react";
 import {AuthContext} from "@/contexts";
-import {IGenre} from "@/interfaces";
 import {GenreItem, GenreListProps} from "@/components/UI/Lists";
 
 export const GenresList = ({genres, changeFunc}: GenreListProps) => {

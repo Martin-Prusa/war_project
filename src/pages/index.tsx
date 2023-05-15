@@ -1,7 +1,20 @@
 import Link from "next/link";
 import {NavbarComponent} from "@/components";
+import {useRouter} from "next/router";
+import {useContext, useEffect} from "react";
+import {AuthContext} from "@/contexts";
 
 export default function Home() {
+
+  const router = useRouter();
+
+  const {state, dispatch} = useContext(AuthContext)
+
+  useEffect(() => {
+    if(state) router.push('/games')
+  }, [])
+
+
   return (
     <main className='bg-gray-50 m-0 p-0 min-h-screen'>
       <NavbarComponent />

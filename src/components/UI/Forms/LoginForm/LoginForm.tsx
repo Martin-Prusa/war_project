@@ -1,9 +1,16 @@
-import {useState} from "react";
+import {useContext, useState} from "react";
 import {ILogin} from "@/interfaces";
 import {FormInput} from "@/components/UI/Forms";
 import {BasicButton} from "@/components/UI/Buttons/BasicButton";
+import {useRouter} from "next/router";
+import {AuthContext} from "@/contexts";
+import {authReducer} from "@/reducers";
 
 export const LoginForm = () => {
+
+    const router = useRouter();
+
+    const {state, dispatch} = useContext(AuthContext)
 
     const [values, setValues] = useState({
         email: '',
@@ -36,9 +43,20 @@ export const LoginForm = () => {
                 }
                 return res.json();
             }).then(data => {
-            console.log(data)
+                if(data.Authorization) {
+                    setShowError(false)
+                    const auth = {Authorization: data.Authorization, email: data.data.email}
+                    dispatch({type: 'setAuthData', auth })
+                    console.log(state)
+                    router.push('/')
+                } else {
+                    setShowError(true)
+                }
         })
-            .catch(e => setShowError(true))
+            .catch(e => {
+                console.error(e)
+                setShowError(true)
+            })
     }
 
     return (

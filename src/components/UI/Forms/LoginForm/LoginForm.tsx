@@ -10,6 +10,8 @@ export const LoginForm = () => {
         password: ''
     } as ILogin)
 
+    const [showError, setShowError] = useState(false)
+
     const setPassword = (password: string) => {
         setValues({...values, password})
     }
@@ -20,6 +22,23 @@ export const LoginForm = () => {
 
     const handleLogin = () => {
         console.log(values)
+        fetch('http://localhost:3000/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(values)
+        })
+            .then(res => {
+                if(res.status !== 201) {
+                    setShowError(true)
+                    return
+                }
+                return res.json();
+            }).then(data => {
+            console.log(data)
+        })
+            .catch(e => setShowError(true))
     }
 
     return (
@@ -28,6 +47,7 @@ export const LoginForm = () => {
                 <FormInput placeholder='example@email.com' type='email' label='Email' value={values.email} setValue={setEmail} />
                 <FormInput placeholder='Password' type='password' label='Heslo' value={values.password} setValue={setPassword} />
                 <BasicButton action={handleLogin}>Login</BasicButton>
+                { showError ? <p className='text-red-500'>Chyba</p> : null}
             </form>
         </div>
     )

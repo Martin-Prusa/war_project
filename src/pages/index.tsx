@@ -28,7 +28,7 @@ export default function Home() {
                 <Link className='w-full h-full block py-2' href='/login'>Přihlásit se</Link>
               </li>
               <li className='bg-gray-500 hover:bg-gray-600 transition-colors rounded-2xl text-white w-1/2 text-center'>
-                <Link className='w-full h-full block py-2' href='/register'>Registrovate se</Link>
+                <Link className='w-full h-full block py-2' href='/register'>Registrovat se</Link>
               </li>
             </ul>
           </div>

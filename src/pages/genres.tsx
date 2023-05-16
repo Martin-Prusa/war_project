@@ -31,7 +31,6 @@ export default function Genres() {
     }
 
     useEffect(() => {
-        console.log(state)
         if(!state) {
             router.push('/')
             return;

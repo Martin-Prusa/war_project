@@ -6,7 +6,7 @@ export const GenresList = ({genres, changeFunc}: GenreListProps) => {
 
     const {state, dispatch} = useContext(AuthContext)
 
-    const deleteGenre = (id: number) => {
+    const deleteGenre = (id: string) => {
         if(!state) return
         fetch('http://localhost:3000/genres/'+id, {
             method: 'DELETE',
@@ -20,7 +20,7 @@ export const GenresList = ({genres, changeFunc}: GenreListProps) => {
 
     return (
         <ul role="list" className="mt-10 flex gap-3 flex-wrap justify-center">
-            {genres.map(genre => <GenreItem key={genre.id!} boxText={genre.id!.toString()} text={genre.name} btnAction={() => deleteGenre(genre.id!)}/>)}
+            {genres.map(genre => <GenreItem key={genre.id!} boxText={'G'} text={genre.name} btnAction={() => deleteGenre(genre.id!)}/>)}
         </ul>
     )
 }

@@ -13,7 +13,6 @@ export default function Me() {
     const [userInfo, setUserInfo] = useState<IUserInfo | null>()
 
     useEffect(() => {
-        console.log(state)
         if (!state) {
             router.push('/')
             return

@@ -31,12 +31,12 @@ export const NewGameForm = () => {
         setValues({...values, description})
     }
 
-    const setPrice = (price: number) => {
-        setValues({...values, price})
+    const setPrice = (price: string) => {
+        setValues({...values, price: parseFloat(price)})
     }
 
-    const setSale = (sale: number) => {
-        setValues({...values, sale})
+    const setSale = (sale: string) => {
+        setValues({...values, sale: parseInt(sale)})
     }
 
     const setPublisher = (publisher: string) => {
@@ -48,18 +48,24 @@ export const NewGameForm = () => {
     }
 
     const setReleaseDate = (releaseDate: Date) => {
-        setValues({...values, releaseDate})
+        setValues({...values, releaseDate: new Date(releaseDate)})
     }
 
     const create = () => {
+        console.log(values)
         if(!state) return
-        fetch('http://localhost:3000/genres', {
+        fetch('http://localhost:3000/games', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${state.Authorization}`
             },
-            body: JSON.stringify(values)
+            body: JSON.stringify({
+                ...values,
+                price: parseInt(values.price+''),
+                sale: parseInt(values.sale+'')
+
+            })
         }).then(res => {
 
         }).catch(e => console.log(e))
@@ -74,7 +80,7 @@ export const NewGameForm = () => {
                 <FormInput placeholder='100' type='number' label='Prodeje' value={values.sale} setValue={setSale} />
                 <FormInput placeholder='Publisher s.r.o' type='text' label='Vydavatel' value={values.publisher} setValue={setPublisher} />
                 <FormInput placeholder='Developer s.r.o' type='text' label='Vývojář' value={values.developer} setValue={setDeveloper} />
-                <FormInput placeholder='' type='date' label='Datum vydání' value={values.releaseDate} setValue={setReleaseDate} />
+                <FormInput placeholder='' type='date' label='Datum vydání' value={values.releaseDate.toISOString().split('T')[0]} setValue={setReleaseDate} />
                 <BasicButton action={create}>Vytvořit hru</BasicButton>
             </form>
         </div>

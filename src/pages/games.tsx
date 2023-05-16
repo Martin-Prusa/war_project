@@ -11,7 +11,6 @@ export default function Games() {
     const {state, dispatch} = useContext(AuthContext)
 
     useEffect(() => {
-        console.log(state)
         if(!state) router.push('/')
     }, [])
 

@@ -1,5 +1,5 @@
 export interface IUserInfo {
-    id: number
+    id: string
     email: string
     createdAt: string,
     updatedAt: string

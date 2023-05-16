@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {IRegister} from "@/interfaces";
 import {FormInput} from "@/components/UI/Forms";
-import {BasicButton} from "@/components/UI/Buttons/BasicButton";
+import {BasicButton} from "@/components/UI/Buttons/BasicButton/BasicButton";
 import {useRouter} from "next/router";
 
 export const RegisterForm = () => {

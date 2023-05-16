@@ -1,4 +1,4 @@
-import {BasicButtonProps} from "@/components/UI/Buttons/BasicButtonProps";
+import {BasicButtonProps} from "@/components/UI/Buttons/BasicButton/BasicButtonProps";
 
 export const BasicButton = ({children, action}: BasicButtonProps) => {
     return (

@@ -1,5 +1,5 @@
 import {FormInput} from "@/components/UI/Forms";
-import {BasicButton} from "@/components/UI/Buttons/BasicButton";
+import {BasicButton} from "@/components/UI/Buttons/BasicButton/BasicButton";
 import {useContext, useState} from "react";
 import {IGenre} from "@/interfaces";
 import {AuthContext} from "@/contexts";

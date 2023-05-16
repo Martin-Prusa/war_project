@@ -1,5 +1,5 @@
 import {FormInput} from "@/components/UI/Forms";
-import {BasicButton} from "@/components/UI/Buttons/BasicButton";
+import {BasicButton} from "@/components/UI/Buttons/BasicButton/BasicButton";
 import {useContext, useState} from "react";
 import {IGame} from "@/interfaces/IGame";
 import {useRouter} from "next/router";

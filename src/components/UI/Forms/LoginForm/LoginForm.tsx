@@ -1,7 +1,7 @@
 import {useContext, useState} from "react";
 import {ILogin} from "@/interfaces";
 import {FormInput} from "@/components/UI/Forms";
-import {BasicButton} from "@/components/UI/Buttons/BasicButton";
+import {BasicButton} from "@/components/UI/Buttons/BasicButton/BasicButton";
 import {useRouter} from "next/router";
 import {AuthContext} from "@/contexts";
 

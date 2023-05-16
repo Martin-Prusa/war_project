@@ -4,15 +4,15 @@ import {GenreItem, GenreListProps} from "@/components/UI/Lists";
 
 export const GenresList = ({genres, changeFunc}: GenreListProps) => {
 
-    const {state, dispatch} = useContext(AuthContext)
+    const {authState, authDispatch} = useContext(AuthContext)
 
     const deleteGenre = (id: string) => {
-        if(!state) return
+        if(!authState) return
         fetch('http://localhost:3000/genres/'+id, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${state.Authorization}`
+                'Authorization': `Bearer ${authState.Authorization}`
             },
         }).then(res => changeFunc())
             .catch(e => console.log(e))

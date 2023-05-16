@@ -7,10 +7,10 @@ import {NewGameForm} from "@/components/UI/Forms/NewGameForm";
 export default function Ngame() {
     const router = useRouter();
 
-    const {state, dispatch} = useContext(AuthContext)
+    const {authState, authDispatch} = useContext(AuthContext)
 
     useEffect(() => {
-        if(!state) router.push('/')
+        if(!authState) router.push('/')
     }, [])
 
     return (

@@ -8,10 +8,10 @@ export default function LoginPage() {
 
     const router = useRouter();
 
-    const {state, dispatch} = useContext(AuthContext)
+    const {authState, authDispatch} = useContext(AuthContext)
 
     useEffect(() => {
-        if(state) router.push('/games')
+        if(authState) router.push('/games')
     }, [])
 
     return (

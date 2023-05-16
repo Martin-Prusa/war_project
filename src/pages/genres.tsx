@@ -9,18 +9,18 @@ import {IGenre} from "@/interfaces";
 export default function Genres() {
     const router = useRouter();
 
-    const {state, dispatch} = useContext(AuthContext)
+    const {authState, authDispatch} = useContext(AuthContext)
 
     const [genres, setGenres] = useState<IGenre[]>([])
 
     const fetchGenres = () => {
-        if(!state) {
+        if(!authState) {
             return;
         }
         fetch('http://localhost:3000/genres', {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${state.Authorization}`
+                'Authorization': `Bearer ${authState.Authorization}`
             }
         }).then(res => res.json())
             .then(data => {
@@ -31,7 +31,7 @@ export default function Genres() {
     }
 
     useEffect(() => {
-        if(!state) {
+        if(!authState) {
             router.push('/')
             return;
         }

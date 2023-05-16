@@ -9,7 +9,7 @@ export const LoginForm = () => {
 
     const router = useRouter();
 
-    const {state, dispatch} = useContext(AuthContext)
+    const {authState, authDispatch} = useContext(AuthContext)
 
     const [values, setValues] = useState<ILogin>({
         email: '',
@@ -44,8 +44,8 @@ export const LoginForm = () => {
                 if(data.Authorization) {
                     setShowError(false)
                     const auth = {Authorization: data.Authorization, email: data.data.email}
-                    dispatch({type: 'setAuthData', auth })
-                    console.log(state)
+                    authDispatch({type: 'setAuthData', auth })
+                    console.log(authState)
                     router.push('/')
                 } else {
                     setShowError(true)

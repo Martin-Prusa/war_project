@@ -10,7 +10,7 @@ export const NewGameForm = () => {
 
     const router = useRouter();
 
-    const {state, dispatch} = useContext(AuthContext)
+    const {authState, authDispatch} = useContext(AuthContext)
 
     const [values, setValues] = useState<IGame>({
         name: '',
@@ -52,12 +52,12 @@ export const NewGameForm = () => {
     }
 
     const create = () => {
-        if(!state) return
+        if(!authState) return
         fetch('http://localhost:3000/games', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${state.Authorization}`
+                'Authorization': `Bearer ${authState.Authorization}`
             },
             body: JSON.stringify({
                 ...values,

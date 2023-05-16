@@ -8,12 +8,12 @@ export default function Me() {
 
     const router = useRouter();
 
-    const {state, dispatch} = useContext(AuthContext)
+    const {authState, authDispatch} = useContext(AuthContext)
 
     const [userInfo, setUserInfo] = useState<IUserInfo | null>()
 
     useEffect(() => {
-        if (!state) {
+        if (!authState) {
             router.push('/')
             return
         }
@@ -21,7 +21,7 @@ export default function Me() {
         fetch('http://localhost:3000/user/me', {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${state.Authorization}`
+                'Authorization': `Bearer ${authState.Authorization}`
             }
         }).then(res => res.json())
             .then(data => setUserInfo(data))

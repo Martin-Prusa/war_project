@@ -8,10 +8,10 @@ export default function Games() {
 
     const router = useRouter();
 
-    const {state, dispatch} = useContext(AuthContext)
+    const {authState, authDispatch} = useContext(AuthContext)
 
     useEffect(() => {
-        if(!state) router.push('/')
+        if(!authState) router.push('/')
     }, [])
 
     return (

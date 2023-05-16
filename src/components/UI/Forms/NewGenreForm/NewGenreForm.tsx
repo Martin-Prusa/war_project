@@ -7,7 +7,7 @@ import {NewGenreFormProps} from "@/components/UI/Forms/NewGenreForm/NewGenreForm
 
 export const NewGenreForm = ({changeFunc}: NewGenreFormProps) => {
 
-    const {state, dispatch} = useContext(AuthContext)
+    const {authState, authDispatch} = useContext(AuthContext)
 
     const [values, setValues] = useState<IGenre>({name: ''})
 
@@ -15,12 +15,12 @@ export const NewGenreForm = ({changeFunc}: NewGenreFormProps) => {
         setValues({...values, name})
     }
     const add = () => {
-        if(!state) return
+        if(!authState) return
         fetch('http://localhost:3000/genres', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${state.Authorization}`
+                'Authorization': `Bearer ${authState.Authorization}`
             },
             body: JSON.stringify(values)
         }).then(res => changeFunc())

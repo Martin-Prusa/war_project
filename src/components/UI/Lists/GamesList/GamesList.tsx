@@ -3,7 +3,7 @@ import {AuthContext} from "@/contexts";
 
 export const GamesList = () => {
 
-    const {state, dispatch} = useContext(AuthContext)
+    const {authState, authDispatch} = useContext(AuthContext)
 
     return (
         <div></div>

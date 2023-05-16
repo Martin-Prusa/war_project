@@ -52,7 +52,6 @@ export const NewGameForm = () => {
     }
 
     const create = () => {
-        console.log(values)
         if(!state) return
         fetch('http://localhost:3000/games', {
             method: 'POST',
@@ -67,7 +66,7 @@ export const NewGameForm = () => {
 
             })
         }).then(res => {
-
+            if (res.status === 201) router.push('/games')
         }).catch(e => console.log(e))
     }
 

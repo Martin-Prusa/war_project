@@ -3,6 +3,7 @@ import {AuthContext} from "@/contexts";
 import {useRouter} from "next/router";
 import {NavbarComponent} from "@/components";
 import Link from "next/link";
+import {GamesList} from "@/components/UI/Lists";
 
 export default function Games() {
 
@@ -24,6 +25,7 @@ export default function Games() {
                 <div>
                     <Link href='/ngame' className='text-green-700'>Nová hra</Link>
                 </div>
+                <GamesList />
             </div>
         </main>
     )

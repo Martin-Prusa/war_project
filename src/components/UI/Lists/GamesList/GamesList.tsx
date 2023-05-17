@@ -2,6 +2,7 @@ import {useContext, useEffect, useState} from "react";
 import {AuthContext} from "@/contexts";
 import {IGame} from "@/interfaces/IGame";
 import {useRouter} from "next/router";
+import {GameCard} from "@/components/UI/Lists/GamesList/GameCard";
 
 export const GamesList = () => {
     const router = useRouter();
@@ -36,6 +37,10 @@ export const GamesList = () => {
     }, [])
 
     return (
-        <div></div>
+        <div>
+            <ul className='flex justify-center gap-3 flex-wrap mt-5'>
+                {games.map(game => <GameCard game={game} key={game.id} />)}
+            </ul>
+        </div>
     )
 }

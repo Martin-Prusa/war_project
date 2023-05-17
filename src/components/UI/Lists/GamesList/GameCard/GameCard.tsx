@@ -1,11 +1,23 @@
 import {GameCardProps} from "@/components/UI/Lists/GamesList/GameCard/GameCardProps";
 import {BasicButton} from "@/components/UI/Buttons";
 import Link from "next/link";
+import {useContext} from "react";
+import {AuthContext} from "@/contexts";
 
-export const GameCard = ({game}: GameCardProps) => {
+export const GameCard = ({game, changeFunc}: GameCardProps) => {
 
-    const deleteGame = () => {
+    const {authState, authDispatch} = useContext(AuthContext)
 
+    const deleteGame = (id: string) => {
+        if(!authState) return
+        fetch('http://localhost:3000/games/'+id, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${authState.Authorization}`
+            },
+        }).then(res => changeFunc())
+            .catch(e => console.log(e))
     }
 
     return (
@@ -22,7 +34,7 @@ export const GameCard = ({game}: GameCardProps) => {
                 <div className='ml-3 mt-3'>{game.description}</div>
             </div>
             <div className='ml-3'>
-                <BasicButton action={deleteGame}>Smazat</BasicButton>
+                <BasicButton action={() => deleteGame(game.id!)}>Smazat</BasicButton>
                 <Link className='mb-4 ml-3 inline-block rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600' href={'/editg/'+game.id}>Upravit</Link>
             </div>
 

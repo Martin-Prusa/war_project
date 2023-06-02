@@ -1,3 +1,5 @@
+import {IRating} from "@/interfaces/IRating";
+
 export interface IGame {
     id?: string
     name: string,

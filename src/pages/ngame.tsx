@@ -19,7 +19,7 @@ export default function Ngame() {
         publisher: '',
         developer: '',
         releaseDate: new Date(),
-        genres: []
+        genres: [],
     })
 
     const create = () => {

@@ -19,7 +19,7 @@ export default function EditGame() {
         publisher: '',
         developer: '',
         releaseDate: new Date(),
-        genres: []
+        genres: [],
     })
 
     useEffect(() => {
@@ -40,7 +40,8 @@ export default function EditGame() {
             .catch(e => console.log(e))
     }, [])
 
-    const edit = () => {
+    const edit = (e: Event) => {
+        e.preventDefault()
         if(!authState) {
             router.push('/')
             return
@@ -51,12 +52,22 @@ export default function EditGame() {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${authState.Authorization}`
             },
-            body: JSON.stringify(values)
-        }).then(res => res.json())
-            .then(data => {
+            body: JSON.stringify({
+                id: values.id,
+                name: values.name,
+                description: values.description,
+                price: values.price,
+                sale: values.sale,
+                publisher: values.publisher,
+                developer: values.developer,
+                releaseDate: values.releaseDate,
+                genres: values.genres,
+            })
+        }).then(res => {
+            if(res.status === 200) res.json().then(data => {
                 router.push('/games')
             })
-            .catch(e => console.log(e))
+        }).catch(e => console.log(e))
     }
 
     return (

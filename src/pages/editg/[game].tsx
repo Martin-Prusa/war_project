@@ -2,7 +2,7 @@ import {useRouter} from "next/router";
 import {NavbarComponent} from "@/components";
 import {NewGameForm} from "@/components/UI/Forms/NewGameForm";
 import {useContext, useEffect, useState} from "react";
-import {IGame} from "@/interfaces";
+import {IGame, IGenre} from "@/interfaces";
 import {AuthContext} from "@/contexts";
 
 export default function EditGame() {
@@ -34,8 +34,7 @@ export default function EditGame() {
             }
         }).then(res => res.json())
             .then(data => {
-                setValues({...data, releaseDate: new Date(data.releaseDate)})
-                console.log(data)
+                setValues({...data, releaseDate: new Date(data.releaseDate), genres: data.genres.map((g: any) => g.genre)})
             })
             .catch(e => console.log(e))
     }, [])
@@ -61,7 +60,7 @@ export default function EditGame() {
                 publisher: values.publisher,
                 developer: values.developer,
                 releaseDate: values.releaseDate,
-                genres: values.genres,
+                genres: values.genres.map(g => g.id),
             })
         }).then(res => {
             if(res.status === 200) res.json().then(data => {

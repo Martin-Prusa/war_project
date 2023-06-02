@@ -1,9 +1,11 @@
 import {FormInput} from "@/components/UI/Forms";
 import {BasicButton} from "@/components/UI/Buttons/BasicButton/BasicButton";
-import {useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import {AuthContext} from "@/contexts";
 import {NewGameFormProps} from "@/components/UI/Forms/NewGameForm/NewGameFormProps";
+import {IGenre} from "@/interfaces";
+import {GenreItem} from "@/components/UI/Lists";
 
 export const NewGameForm = ({submitFunc, values, setValues, submitText}: NewGameFormProps) => {
 
@@ -11,6 +13,24 @@ export const NewGameForm = ({submitFunc, values, setValues, submitText}: NewGame
 
     const {authState, authDispatch} = useContext(AuthContext)
 
+    const [genres, setGenres] = useState<IGenre[]>([])
+
+    useEffect(() => {
+        if(!authState) {
+            router.push('/')
+            return;
+        }
+        fetch('http://localhost:3000/genres', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${authState.Authorization}`
+            }
+        }).then(res => res.json())
+            .then(data => {
+                setGenres(data)
+            })
+            .catch(e => console.log(e))
+    }, [])
 
     const setName = (name: string) => {
         setValues({...values, name})
@@ -40,6 +60,16 @@ export const NewGameForm = ({submitFunc, values, setValues, submitText}: NewGame
         setValues({...values, releaseDate: new Date(releaseDate)})
     }
 
+    const setGameGenres = (id: string) => {
+        if(iclGenre(id)) setValues({...values, genres: values.genres.filter(x => x.id !== id)})
+        else setValues({...values, genres: [...values.genres, {id: id, name: ''}]})
+        console.log(values)
+    }
+
+    const iclGenre = (id: string) => {
+        return  values.genres.some(g => g.id === id)
+    }
+
     return (
         <div className='bg-white'>
             <form action="">
@@ -50,6 +80,11 @@ export const NewGameForm = ({submitFunc, values, setValues, submitText}: NewGame
                 <FormInput placeholder='Publisher s.r.o' type='text' label='Vydavatel' value={values.publisher} setValue={setPublisher} />
                 <FormInput placeholder='Developer s.r.o' type='text' label='Vývojář' value={values.developer} setValue={setDeveloper} />
                 <FormInput placeholder='' type='date' label='Datum vydání' value={values.releaseDate.toISOString().split('T')[0]} setValue={setReleaseDate} />
+                <div>
+                    <ul role="list" className="mt-10 flex gap-3 flex-wrap justify-center">
+                        {genres.map(genre => <GenreItem key={genre.id!} btnText={iclGenre(genre.id!) ? 'Add' : 'Del'} boxText={'G'} text={genre.name} btnAction={() => setGameGenres(genre.id!)}/>)}
+                    </ul>
+                </div>
                 <BasicButton action={submitFunc}>{submitText}</BasicButton>
             </form>
         </div>

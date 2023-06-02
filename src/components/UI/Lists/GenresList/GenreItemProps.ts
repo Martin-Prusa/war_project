@@ -1,5 +1,6 @@
 export interface GenreItemProps {
     boxText: string
     text: string
-    btnAction: () => void
+    btnAction: () => void,
+    btnText: string
 }

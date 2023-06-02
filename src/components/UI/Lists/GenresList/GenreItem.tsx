@@ -1,6 +1,6 @@
 import {GenreItemProps} from "@/components/UI/Lists";
 
-export const GenreItem = ({boxText, text, btnAction}: GenreItemProps) => {
+export const GenreItem = ({boxText, text, btnAction, btnText}: GenreItemProps) => {
     return (
         <li  className="flex rounded-md w-72 h-12">
             <div
@@ -15,7 +15,7 @@ export const GenreItem = ({boxText, text, btnAction}: GenreItemProps) => {
                     <button type="button"
                             onClick={btnAction}
                             className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-transparent bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
-                        X
+                        {btnText}
                     </button>
                 </div>
             </div>

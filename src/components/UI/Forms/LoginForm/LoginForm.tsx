@@ -45,7 +45,6 @@ export const LoginForm = () => {
                     setShowError(false)
                     const auth = {Authorization: data.Authorization, email: data.data.email}
                     authDispatch({type: 'setAuthData', auth })
-                    console.log(authState)
                     router.push('/')
                 } else {
                     setShowError(true)

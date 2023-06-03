@@ -63,7 +63,6 @@ export const NewGameForm = ({submitFunc, values, setValues, submitText}: NewGame
     const setGameGenres = (id: string) => {
         if(iclGenre(id)) setValues({...values, genres: values.genres.filter(x => x.id !== id)})
         else setValues({...values, genres: [...values.genres, {id: id, name: ''}]})
-        console.log(values)
     }
 
     const iclGenre = (id: string) => {

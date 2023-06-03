@@ -36,6 +36,7 @@ export const GameCard = ({game, changeFunc}: GameCardProps) => {
             <div className='ml-3'>
                 <BasicButton action={() => deleteGame(game.id!)}>Smazat</BasicButton>
                 <Link className='mb-4 ml-3 inline-block rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600' href={'/editg/'+game.id}>Upravit</Link>
+                <Link className='mb-4 ml-3 inline-block rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600' href={'/detail/'+game.id}>Detail</Link>
             </div>
 
         </div>

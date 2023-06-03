@@ -1,1 +1,6 @@
 export * from './FormInput'
+export * from './ReviewForm'
+export * from './NewGameForm'
+export * from './NewGenreForm'
+export * from './LoginForm'
+export * from './RegisterForm'

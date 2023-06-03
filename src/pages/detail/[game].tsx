@@ -4,6 +4,7 @@ import {AuthContext} from "@/contexts";
 import {IGame} from "@/interfaces";
 import {NavbarComponent} from "@/components";
 import {GameDetail} from "@/components/UI/GameDetail";
+import {ReviewsList} from "@/components/UI/Lists";
 
 export default function GameDetailPage() {
 
@@ -36,6 +37,7 @@ export default function GameDetailPage() {
         }).then(res => res.json())
             .then(data => {
                 setValues({...data, releaseDate: new Date(data.releaseDate), genres: data.genres.map((g: any) => g.genre)})
+                console.log(data)
             })
             .catch(e => console.log(e))
     }
@@ -48,6 +50,7 @@ export default function GameDetailPage() {
         <main>
             <NavbarComponent />
             <GameDetail game={values} />
+            <ReviewsList reviews={values.ratings} />
         </main>
     )
 }

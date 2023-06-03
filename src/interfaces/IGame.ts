@@ -1,5 +1,6 @@
 import {IRating} from "@/interfaces/IRating";
 import {IGenre} from "@/interfaces/IGenre";
+import {IReview} from "@/interfaces/IReview";
 
 export interface IGame {
     id?: string
@@ -10,5 +11,6 @@ export interface IGame {
     publisher: string,
     developer: string,
     releaseDate: Date,
-    genres: IGenre[]
+    genres: IGenre[],
+    ratings?: IReview[]
 }

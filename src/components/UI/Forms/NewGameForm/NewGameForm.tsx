@@ -80,7 +80,7 @@ export const NewGameForm = ({submitFunc, values, setValues, submitText}: NewGame
                 <FormInput placeholder='Publisher s.r.o' type='text' label='Vydavatel' value={values.publisher} setValue={setPublisher} />
                 <FormInput placeholder='Developer s.r.o' type='text' label='Vývojář' value={values.developer} setValue={setDeveloper} />
                 <FormInput placeholder='' type='date' label='Datum vydání' value={values.releaseDate.toISOString().split('T')[0]} setValue={setReleaseDate} />
-                <div>
+                <div className='mb-3'>
                     <ul role="list" className="mt-10 flex gap-3 flex-wrap justify-center">
                         {genres.map(genre => <GenreItem key={genre.id!} btnText={!iclGenre(genre.id!) ? 'Add' : 'Del'} boxText={'G'} text={genre.name} btnAction={() => setGameGenres(genre.id!)}/>)}
                     </ul>

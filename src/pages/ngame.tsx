@@ -32,6 +32,7 @@ export default function Ngame() {
             },
             body: JSON.stringify({
                 ...values,
+                genres: values.genres.map(g => g.id),
                 price: parseInt(values.price+''),
                 sale: parseInt(values.sale+'')
 

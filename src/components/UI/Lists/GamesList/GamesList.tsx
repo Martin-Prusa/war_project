@@ -39,7 +39,7 @@ export const GamesList = () => {
     return (
         <div>
             <ul className='flex justify-center gap-3 flex-wrap mt-5'>
-                {games.map(game => <GameCard changeFunc={loadGames} game={game} key={game.id} />)}
+                {games ? games.map(game => <GameCard changeFunc={loadGames} game={game} key={game.id} />) : null}
             </ul>
         </div>
     )

@@ -62,7 +62,7 @@ export const LoginForm = () => {
                 <FormInput placeholder='example@email.com' type='email' label='Email' value={values.email} setValue={setEmail} />
                 <FormInput placeholder='Password' type='password' label='Heslo' value={values.password} setValue={setPassword} />
                 <BasicButton action={handleLogin}>Login</BasicButton>
-                { showError ? <p className='text-red-500'>Chyba</p> : null}
+                { showError ? <p className='text-red-500'>Nelze se přihlásit. Zkontrolujte email a heslo.</p> : null}
             </form>
         </div>
     )

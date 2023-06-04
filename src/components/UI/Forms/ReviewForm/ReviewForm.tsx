@@ -18,6 +18,8 @@ export const ReviewForm = ({changeFunc}: { changeFunc: (() => void) }) => {
         value: 1
     })
 
+    const [error, setError] = useState<string>('')
+
     const ratings = Array.from(Array(5).keys()).map(i => i + 1)
 
     const setComment = (comment: string) => {
@@ -30,6 +32,10 @@ export const ReviewForm = ({changeFunc}: { changeFunc: (() => void) }) => {
 
     const submit = () => {
         if(!authState) return
+        if(values.comment.trim() === '') {
+            setError('Pole komentář nesmí být prázdné.')
+            return;
+        }
         fetch(`http://localhost:3000/games/${game}/add-rating`, {
             method: 'PUT',
             headers: {
@@ -37,8 +43,12 @@ export const ReviewForm = ({changeFunc}: { changeFunc: (() => void) }) => {
                 'Authorization': `Bearer ${authState.Authorization}`
             },
             body: JSON.stringify(values)
-        }).then(res => changeFunc())
-            .catch(e => console.log(e))
+        }).then(res => {
+            setError('')
+            setComment('')
+            changeFunc()
+        })
+            .catch(e => setError('Nelze přidat hodnocení.'))
     }
 
     return (
@@ -47,6 +57,7 @@ export const ReviewForm = ({changeFunc}: { changeFunc: (() => void) }) => {
             <form>
                 <FormInput placeholder='Super hra' label='Komentář' value={values.comment} setValue={setComment}
                            type='text'/>
+                <div className='text-red-500 mb-3'>{error}</div>
                 <div className='text-sm font-medium leading-6 text-gray-900'>Hodnocení</div>
                 {ratings.map(r => <RatingButton key={r} action={() => setValue(r)}
                                                 selected={values.value === r}>{r}</RatingButton>)}

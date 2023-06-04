@@ -15,6 +15,8 @@ export const NewGameForm = ({submitFunc, values, setValues, submitText}: NewGame
 
     const [genres, setGenres] = useState<IGenre[]>([])
 
+    const [error, setError] = useState<string>('')
+
     useEffect(() => {
         if(!authState) {
             router.push('/')
@@ -69,6 +71,19 @@ export const NewGameForm = ({submitFunc, values, setValues, submitText}: NewGame
         return  values.genres.some(g => g.id === id)
     }
 
+    const submit = () => {
+        if(values.name.trim() === '') {
+            setError('Název hry musí být vyplněn.')
+            return;
+        }
+        if(values.description.trim() === '') {
+            setError('Popis hry musí být vyplněn.')
+            return;
+        }
+        setError('')
+        submitFunc()
+    }
+
     return (
         <div className='bg-white'>
             <form action="">
@@ -84,7 +99,8 @@ export const NewGameForm = ({submitFunc, values, setValues, submitText}: NewGame
                         {genres.map(genre => <GenreItem key={genre.id!} btnText={!iclGenre(genre.id!) ? 'Add' : 'Del'} boxText={'G'} text={genre.name} btnAction={() => setGameGenres(genre.id!)}/>)}
                     </ul>
                 </div>
-                <BasicButton action={submitFunc}>{submitText}</BasicButton>
+                <div className='mb-3 text-red-500'>{error}</div>
+                <BasicButton action={submit}>{submitText}</BasicButton>
             </form>
         </div>
     )

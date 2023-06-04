@@ -22,6 +22,8 @@ export default function Ngame() {
         genres: [],
     })
 
+    const [error, setError] = useState<string>('')
+
     const create = () => {
         if(!authState) return
         fetch('http://localhost:3000/games', {
@@ -38,8 +40,11 @@ export default function Ngame() {
 
             })
         }).then(res => {
-            if (res.status === 201) router.push('/games')
-        }).catch(e => console.log(e))
+            if (res.status === 201) {
+                setError('')
+                router.push('/games')
+            }
+        }).catch(e => setError('Nelze přidat hru.'))
     }
 
     useEffect(() => {
@@ -54,7 +59,7 @@ export default function Ngame() {
                     <h1 className='pt-10'>Nová hra</h1>
                 </div>
                 <NewGameForm values={values} setValues={setValues} submitFunc={create} submitText='Vytvořit hru' />
-
+                <div className='text-red-500 mb-3'>{error}</div>
             </div>
         </main>
     )

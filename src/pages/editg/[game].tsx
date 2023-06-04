@@ -22,6 +22,8 @@ export default function EditGame() {
         genres: [],
     })
 
+    const [error, setError] = useState<string>('')
+
     useEffect(() => {
         if(!authState) {
             router.push('/')
@@ -64,9 +66,10 @@ export default function EditGame() {
             })
         }).then(res => {
             if(res.status === 200) res.json().then(data => {
+                setError('')
                 router.push('/games')
             })
-        }).catch(e => console.log(e))
+        }).catch(e => setError('Nelze upravit hru.'))
     }
 
     return (
@@ -77,7 +80,7 @@ export default function EditGame() {
                     <h1 className='pt-10'>Upravit hru</h1>
                 </div>
                 <NewGameForm values={values} setValues={setValues} submitFunc={edit} submitText='Upravit hru' />
-
+                <div className='mb-3 text-red-500'>{error}</div>
             </div>
         </main>
     )

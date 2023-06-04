@@ -39,8 +39,8 @@ export default function EditGame() {
             .catch(e => console.log(e))
     }, [])
 
-    const edit = (e: Event) => {
-        e.preventDefault()
+    const edit = () => {
+        //e.preventDefault()
         if(!authState) {
             router.push('/')
             return

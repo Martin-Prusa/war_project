@@ -7,7 +7,7 @@ export const GameDetail = ({game}: {game: IGame}) => {
             <h1 className='text-3xl mt-5 text-center'>{game.name}</h1>
             <div className='container mx-auto flex flex-col gap-5'>
                 <div>Cena: {game.price} Kč</div>
-                <div>Prodeje: {game.price}</div>
+                <div>Prodeje: {game.sale}</div>
                 <div>Vývojář: {game.developer}</div>
                 <div>Vydavatel: {game.publisher}</div>
                 <div>Vydáno: {game.releaseDate.toLocaleDateString()}</div>

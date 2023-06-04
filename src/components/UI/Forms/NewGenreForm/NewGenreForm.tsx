@@ -29,12 +29,12 @@ export const NewGenreForm = ({changeFunc}: NewGenreFormProps) => {
                 'Authorization': `Bearer ${authState.Authorization}`
             },
             body: JSON.stringify(values)
-        }).then(res => {
+        }).then(() => {
             setError('')
             setName('')
             changeFunc()
         })
-            .catch(e => setError('Nelze přidat žánr.'))
+            .catch(() => setError('Nelze přidat žánr.'))
     }
 
     return (

@@ -2,7 +2,7 @@ import {useRouter} from "next/router";
 import {NavbarComponent} from "@/components";
 import {NewGameForm} from "@/components/UI/Forms/NewGameForm";
 import {useContext, useEffect, useState} from "react";
-import {IGame, IGenre} from "@/interfaces";
+import {IGame} from "@/interfaces";
 import {AuthContext} from "@/contexts";
 
 export default function EditGame() {
@@ -65,11 +65,11 @@ export default function EditGame() {
                 genres: values.genres.map(g => g.id),
             })
         }).then(res => {
-            if(res.status === 200) res.json().then(data => {
+            if(res.status === 200) res.json().then(() => {
                 setError('')
                 router.push('/games')
             })
-        }).catch(e => setError('Nelze upravit hru.'))
+        }).catch(() => setError('Nelze upravit hru.'))
     }
 
     return (

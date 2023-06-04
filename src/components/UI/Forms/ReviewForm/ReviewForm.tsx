@@ -43,12 +43,12 @@ export const ReviewForm = ({changeFunc}: { changeFunc: (() => void) }) => {
                 'Authorization': `Bearer ${authState.Authorization}`
             },
             body: JSON.stringify(values)
-        }).then(res => {
+        }).then(() => {
             setError('')
             setComment('')
             changeFunc()
         })
-            .catch(e => setError('Nelze přidat hodnocení.'))
+            .catch(() => setError('Nelze přidat hodnocení.'))
     }
 
     return (

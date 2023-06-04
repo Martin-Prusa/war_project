@@ -62,7 +62,7 @@ export const RegisterForm = () => {
                 setError('Nelze se zaregistrovat.')
             }
         })
-            .catch(e => {
+            .catch(() => {
                 setError('Nelze se zaregistrovat.')
             })
     }

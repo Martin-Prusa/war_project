@@ -2,5 +2,5 @@ import {ReactNode} from "react";
 
 export interface BasicButtonProps {
     children: ReactNode
-    action: (() => void)
+    action: (() => void) | ((e: Event) => void)
 }

@@ -11,10 +11,16 @@ export const NewGenreForm = ({changeFunc}: NewGenreFormProps) => {
 
     const [values, setValues] = useState<IGenre>({name: ''})
 
+    const [error, setError] = useState<string>('')
+
     const setName = (name: string) => {
         setValues({...values, name})
     }
     const add = () => {
+        if(values.name.trim() === '') {
+            setError('Název žánru musí být vyplněný.')
+            return;
+        }
         if(!authState) return
         fetch('http://localhost:3000/genres', {
             method: 'POST',
@@ -23,14 +29,19 @@ export const NewGenreForm = ({changeFunc}: NewGenreFormProps) => {
                 'Authorization': `Bearer ${authState.Authorization}`
             },
             body: JSON.stringify(values)
-        }).then(res => changeFunc())
-            .catch(e => console.log(e))
+        }).then(res => {
+            setError('')
+            setName('')
+            changeFunc()
+        })
+            .catch(e => setError('Nelze přidat žánr.'))
     }
 
     return (
         <div className='bg-white'>
             <form action="">
                 <FormInput placeholder='Super hra' type='text' label='Žánr' value={values.name} setValue={setName} />
+                <div className='text-red-500 mb-3'>{error}</div>
                 <BasicButton action={add}>Přidat</BasicButton>
             </form>
         </div>

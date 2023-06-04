@@ -1,1 +1,5 @@
 export * from './NavbarComponent'
+export * from './GameDetail'
+export * from './Buttons'
+export * from './Forms'
+export * from './Lists'

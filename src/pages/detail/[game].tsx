@@ -38,7 +38,6 @@ export default function GameDetailPage() {
         }).then(res => res.json())
             .then(data => {
                 setValues({...data, releaseDate: new Date(data.releaseDate), genres: data.genres.map((g: any) => g.genre)})
-                console.log(data)
             })
             .catch(e => console.log(e))
     }

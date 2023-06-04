@@ -1,10 +1,17 @@
 import {FormInput} from "@/components/UI/Forms";
-import {useState} from "react";
+import {useContext, useState} from "react";
 import {IReview} from "@/interfaces";
 import {RatingButton} from "@/components/UI/Buttons/RatingButton";
 import {BasicButton} from "@/components/UI/Buttons";
+import {AuthContext} from "@/contexts";
+import {useRouter} from "next/router";
 
 export const ReviewForm = ({changeFunc}: { changeFunc: (() => void) }) => {
+
+    const {authState, authDispatch} = useContext(AuthContext)
+
+    const router = useRouter();
+    const {game} = router.query;
 
     const [values, setValues] = useState<IReview>({
         comment: '',
@@ -22,7 +29,16 @@ export const ReviewForm = ({changeFunc}: { changeFunc: (() => void) }) => {
     }
 
     const submit = () => {
-        changeFunc()
+        if(!authState) return
+        fetch(`http://localhost:3000/games/${game}/add-rating`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${authState.Authorization}`
+            },
+            body: JSON.stringify(values)
+        }).then(res => changeFunc())
+            .catch(e => console.log(e))
     }
 
     return (

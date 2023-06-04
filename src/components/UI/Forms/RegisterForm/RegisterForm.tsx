@@ -14,7 +14,7 @@ export const RegisterForm = () => {
         username: ''
     })
 
-    const [showError, setShowError] = useState(false)
+    const [error, setError] = useState<string>('')
 
     const setPassword = (password: string) => {
         setValues({...values, password})
@@ -29,6 +29,18 @@ export const RegisterForm = () => {
     }
 
     const handleRegister = () => {
+        if(values.email.trim() === '') {
+            setError('Email musí být vyplněný.')
+            return
+        }
+        if(values.username.trim() === '') {
+            setError('Uživatelské jméno musí být vyplněné.')
+            return
+        }
+        if(values.password.length < 5) {
+            setError('Heslo musí mít alespoň 6 znaků.')
+            return
+        }
         fetch('http://localhost:3000/auth/register', {
             method: 'POST',
             headers: {
@@ -38,21 +50,20 @@ export const RegisterForm = () => {
         })
             .then(res => {
                 if(res.status !== 201) {
-                    setShowError(true)
+                    setError('Nelze se zaregistrovat. Zkontrolujte zadané hodnoty.')
                     return
                 }
                 return res.json();
             }).then(data => {
             if(data.success) {
-                setShowError(false)
+                setError('')
                 router.push('/successregistration')
             } else {
-                setShowError(true)
+                setError('Nelze se zaregistrovat.')
             }
         })
             .catch(e => {
-                console.error(e)
-                setShowError(true)
+                setError('Nelze se zaregistrovat.')
             })
     }
 
@@ -63,7 +74,7 @@ export const RegisterForm = () => {
                 <FormInput placeholder='Username' type='text' label='Uživatelské jméno' value={values.username} setValue={setUsername} />
                 <FormInput placeholder='Password' type='password' label='Heslo' value={values.password} setValue={setPassword} />
                 <BasicButton action={handleRegister}>Registrovat se</BasicButton>
-                { showError ? <p className='text-red-500'>Chyba</p> : null}
+                <p className='text-red-500'>{error}</p>
             </form>
         </div>
     )

@@ -5,6 +5,7 @@ import {IGame} from "@/interfaces";
 import {NavbarComponent} from "@/components";
 import {GameDetail} from "@/components/UI/GameDetail";
 import {ReviewsList} from "@/components/UI/Lists";
+import {ReviewForm} from "@/components/UI/Forms";
 
 export default function GameDetailPage() {
 
@@ -50,6 +51,7 @@ export default function GameDetailPage() {
         <main>
             <NavbarComponent />
             <GameDetail game={values} />
+            <ReviewForm changeFunc={loadGame} />
             <ReviewsList reviews={values.ratings} />
         </main>
     )

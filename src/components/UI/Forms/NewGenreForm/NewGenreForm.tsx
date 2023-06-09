@@ -4,6 +4,7 @@ import {useContext, useState} from "react";
 import {IGenre} from "@/interfaces";
 import {AuthContext} from "@/contexts";
 import {NewGenreFormProps} from "@/components/UI/Forms/NewGenreForm/NewGenreFormProps";
+import {config} from "@/config/config";
 
 export const NewGenreForm = ({changeFunc}: NewGenreFormProps) => {
 
@@ -22,7 +23,7 @@ export const NewGenreForm = ({changeFunc}: NewGenreFormProps) => {
             return;
         }
         if(!authState) return
-        fetch('http://localhost:3000/genres', {
+        fetch(config.api.root+'genres', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

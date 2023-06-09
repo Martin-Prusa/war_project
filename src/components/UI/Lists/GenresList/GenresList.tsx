@@ -1,6 +1,7 @@
 import {useContext} from "react";
 import {AuthContext} from "@/contexts";
 import {GenreItem, GenreListProps} from "@/components/UI/Lists";
+import {config} from "@/config/config";
 
 export const GenresList = ({genres, changeFunc}: GenreListProps) => {
 
@@ -8,7 +9,7 @@ export const GenresList = ({genres, changeFunc}: GenreListProps) => {
 
     const deleteGenre = (id: string) => {
         if(!authState) return
-        fetch('http://localhost:3000/genres/'+id, {
+        fetch(config.api.root+'genres/'+id, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

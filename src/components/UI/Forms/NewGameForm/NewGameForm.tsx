@@ -6,6 +6,7 @@ import {AuthContext} from "@/contexts";
 import {NewGameFormProps} from "@/components/UI/Forms/NewGameForm/NewGameFormProps";
 import {IGenre} from "@/interfaces";
 import {GenreItem} from "@/components/UI/Lists";
+import {config} from "@/config/config";
 
 export const NewGameForm = ({submitFunc, values, setValues, submitText}: NewGameFormProps) => {
 
@@ -22,7 +23,7 @@ export const NewGameForm = ({submitFunc, values, setValues, submitText}: NewGame
             router.push('/')
             return;
         }
-        fetch('http://localhost:3000/genres', {
+        fetch(config.api.root+'genres', {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${authState.Authorization}`

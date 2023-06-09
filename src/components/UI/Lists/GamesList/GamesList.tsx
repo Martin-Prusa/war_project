@@ -3,6 +3,7 @@ import {AuthContext} from "@/contexts";
 import {IGame} from "@/interfaces/IGame";
 import {useRouter} from "next/router";
 import {GameCard} from "@/components/UI/Lists/GamesList/GameCard";
+import {config} from "@/config/config";
 
 export const GamesList = () => {
     const router = useRouter();
@@ -15,7 +16,7 @@ export const GamesList = () => {
         if(!authState) {
             return;
         }
-        fetch('http://localhost:3000/games', {
+        fetch(config.api.root+'games', {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${authState.Authorization}`

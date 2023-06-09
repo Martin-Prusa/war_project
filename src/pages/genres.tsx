@@ -5,6 +5,7 @@ import {AuthContext} from "@/contexts";
 import {GenresList} from "@/components/UI/Lists";
 import {NewGenreForm} from "@/components/UI/Forms/NewGenreForm";
 import {IGenre} from "@/interfaces";
+import {config} from "@/config/config";
 
 export default function Genres() {
     const router = useRouter();
@@ -17,7 +18,7 @@ export default function Genres() {
         if(!authState) {
             return;
         }
-        fetch('http://localhost:3000/genres', {
+        fetch(config.api.root+'genres', {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${authState.Authorization}`

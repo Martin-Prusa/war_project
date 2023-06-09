@@ -4,6 +4,7 @@ import {NewGameForm} from "@/components/UI/Forms/NewGameForm";
 import {useContext, useEffect, useState} from "react";
 import {IGame} from "@/interfaces";
 import {AuthContext} from "@/contexts";
+import {config} from "@/config/config";
 
 export default function EditGame() {
     const router = useRouter();
@@ -29,7 +30,7 @@ export default function EditGame() {
             router.push('/')
             return
         }
-        fetch('http://localhost:3000/games/'+game, {
+        fetch(config.api.root+'games/'+game, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${authState.Authorization}`
@@ -47,7 +48,7 @@ export default function EditGame() {
             router.push('/')
             return
         }
-        fetch('http://localhost:3000/games/'+game, {
+        fetch(config.api.root+'games/'+game, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

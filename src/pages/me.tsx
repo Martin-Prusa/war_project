@@ -3,6 +3,7 @@ import {useRouter} from "next/router";
 import {useContext, useEffect, useState} from "react";
 import {AuthContext} from "@/contexts";
 import {IUserInfo} from "@/interfaces";
+import {config} from "@/config/config";
 
 export default function Me() {
 
@@ -18,7 +19,7 @@ export default function Me() {
             return
         }
 
-        fetch('http://localhost:3000/user/me', {
+        fetch(config.api.root+'user/me', {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${authState.Authorization}`

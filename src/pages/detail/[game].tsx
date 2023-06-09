@@ -6,6 +6,7 @@ import {NavbarComponent} from "@/components";
 import {GameDetail} from "@/components/UI/GameDetail";
 import {ReviewsList} from "@/components/UI/Lists";
 import {ReviewForm} from "@/components/UI/Forms";
+import {config} from "@/config/config";
 
 export default function GameDetailPage() {
 
@@ -30,7 +31,7 @@ export default function GameDetailPage() {
             router.push('/')
             return
         }
-        fetch('http://localhost:3000/games/'+game, {
+        fetch(config.api.root+'games/'+game, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${authState.Authorization}`

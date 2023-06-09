@@ -3,6 +3,7 @@ import {IRegister} from "@/interfaces";
 import {FormInput} from "@/components/UI/Forms";
 import {BasicButton} from "@/components/UI/Buttons/BasicButton/BasicButton";
 import {useRouter} from "next/router";
+import {config} from "@/config/config";
 
 export const RegisterForm = () => {
 
@@ -41,7 +42,7 @@ export const RegisterForm = () => {
             setError('Heslo musí mít alespoň 6 znaků.')
             return
         }
-        fetch('http://localhost:3000/auth/register', {
+        fetch(config.api.root+'auth/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

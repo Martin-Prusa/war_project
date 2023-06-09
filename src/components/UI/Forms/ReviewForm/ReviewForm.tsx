@@ -5,6 +5,7 @@ import {RatingButton} from "@/components/UI/Buttons/RatingButton";
 import {BasicButton} from "@/components/UI/Buttons";
 import {AuthContext} from "@/contexts";
 import {useRouter} from "next/router";
+import {config} from "@/config/config";
 
 export const ReviewForm = ({changeFunc}: { changeFunc: (() => void) }) => {
 
@@ -36,7 +37,7 @@ export const ReviewForm = ({changeFunc}: { changeFunc: (() => void) }) => {
             setError('Pole komentář nesmí být prázdné.')
             return;
         }
-        fetch(`http://localhost:3000/games/${game}/add-rating`, {
+        fetch(`${config.api.root}games/${game}/add-rating`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

@@ -3,6 +3,7 @@ import {BasicButton} from "@/components/UI/Buttons";
 import Link from "next/link";
 import {useContext} from "react";
 import {AuthContext} from "@/contexts";
+import {config} from "@/config/config";
 
 export const GameCard = ({game, changeFunc}: GameCardProps) => {
 
@@ -10,7 +11,7 @@ export const GameCard = ({game, changeFunc}: GameCardProps) => {
 
     const deleteGame = (id: string) => {
         if(!authState) return
-        fetch('http://localhost:3000/games/'+id, {
+        fetch(config.api.root+'games/'+id, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

@@ -4,6 +4,7 @@ import {FormInput} from "@/components/UI/Forms";
 import {BasicButton} from "@/components/UI/Buttons/BasicButton/BasicButton";
 import {useRouter} from "next/router";
 import {AuthContext} from "@/contexts";
+import {config} from "@/config/config";
 
 export const LoginForm = () => {
 
@@ -27,7 +28,7 @@ export const LoginForm = () => {
     }
 
     const handleLogin = () => {
-        fetch('http://localhost:3000/auth/login', {
+        fetch(config.api.root+'auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

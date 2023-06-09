@@ -4,6 +4,7 @@ import {AuthContext} from "@/contexts";
 import {NavbarComponent} from "@/components";
 import {NewGameForm} from "@/components/UI/Forms/NewGameForm";
 import {IGame} from "@/interfaces";
+import {config} from "@/config/config";
 
 export default function Ngame() {
     const router = useRouter();
@@ -25,7 +26,7 @@ export default function Ngame() {
 
     const create = () => {
         if(!authState) return
-        fetch('http://localhost:3000/games', {
+        fetch(config.api.root+'games', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
